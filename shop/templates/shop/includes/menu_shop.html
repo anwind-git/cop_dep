@@ -1,0 +1,22 @@
+<nav class="navbar sticky-top navbar-light bg-light">
+  <div class="container">
+    <div class="btn-group col align-self-center" role="group">
+      {% for c in categories %}
+        {% if c.products__count > 0 %}
+          {% if c.slug != cat_selected %}
+            <a class="btn btn-outline-secondary text-uppercase" href="{{ c.get_absolute_url }}" role="button">{{ c.categorie }}</a>
+          {% else %}
+            <a class="btn btn-outline-secondary text-uppercase active" href="{{ c.get_absolute_url }}" role="button">{{ c.categorie }}</a>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+        {% with total_items=cart|length %}
+        {% if cart|length > 0 %}
+           <a href="{% url 'cart:cart_detail' %}" class="btn btn-outline-success" type="button"> Корзина: {{ cart.get_total_price }} Руб.</a>
+        {% else %}
+            <a href="/cart" class="btn btn-secondary" type="button">Ваша корзина пуста</a>
+        {% endif %}
+    {% endwith %}
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,17 @@
+<nav class="navbar sticky-top navbar-light bg-light">
+  <div class="container">
+      {% for c in categories %}
+          {% if c.products__count > 0 %}
+            {% if c.slug != cat_selected %}
+              <div class="btn-group btn-group-lg" data-bs-toggle="buttons">
+                  <a href="{{ c.get_absolute_url }}" class="text-uppercase"><label class="btn btn-light">{{ c.categorie }}</label></a>
+              </div>
+            {% else %}
+              <div class="btn-group btn-group-lg" data-bs-toggle="buttons">
+                  <a href="{{ c.get_absolute_url }}" class="text-uppercase"><label class="btn btn-light active" role="button" data-bs-toggle="button" aria-pressed="true">{{ c.categorie }}</label></a>
+              </div>
+            {% endif %}
+          {% endif %}
+      {% endfor %}
+  </div>
+</nav>
